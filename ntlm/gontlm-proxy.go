@@ -27,12 +27,12 @@ var ProxyContext context.Context
 
 func init() {
 	flag.StringVar(&ProxyBind, "bind", "http://0.0.0.0:19971", "IP & Port to bind to")
-	flag.StringVar(&ProxyServer, "proxy", "http://172.17.3.156:8080", "Forwarding proxy server")
+	flag.StringVar(&ProxyServer, "proxy", "http://172.17.3.161:8080", "Forwarding proxy server")
 	flag.BoolVar(&ProxyVerbose, "verbose", false, "Enable verbose logging")
 }
 
 var ProxyUser = "miftachul.huda"
-var ProxyPass = "turnigy9xHud4"
+var ProxyPass = "Turnigy4/2023"
 var ProxyDomain = "pertamina.com"
 var ProxyOverrides *map[string]*url.URL
 var ProxyDialerCacheTimeout = 60 * time.Minute
