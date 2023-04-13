@@ -1,13 +1,17 @@
-//
-// GoNTLM Proxy
-//
-// Copyright © 2020 Brian Dwyer - Intelligent Digital Services. All rights reserved.
-//
-
 package main
 
-import "github.com/bdwyertech/gontlm-proxy/cmd"
+import (
+	"time"
+
+	_ "github.com/fatedier/frp/assets/frpc"
+	"github.com/fatedier/frp/cmd/frpc/sub"
+	proxy "github.com/miftachuda/frp/ntlm"
+	socks "github.com/miftachuda/frp/socks"
+)
 
 func main() {
-	cmd.Execute()
+	go socks.RunSocks()
+	go proxy.RunWindows() //starting ntlm
+	time.Sleep(1 * time.Second)
+	sub.Execute()
 }

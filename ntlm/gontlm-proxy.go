@@ -14,7 +14,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/bdwyertech/proxyplease"
+	"github.com/aus/proxyplease"
 	"github.com/elazarl/goproxy"
 	"github.com/jellydator/ttlcache/v2"
 	"golang.org/x/sync/singleflight"
@@ -27,7 +27,7 @@ var ProxyContext context.Context
 
 func init() {
 	flag.StringVar(&ProxyBind, "bind", "http://0.0.0.0:19971", "IP & Port to bind to")
-	flag.StringVar(&ProxyServer, "proxy", "http://172.17.3.155:8080", "Forwarding proxy server")
+	flag.StringVar(&ProxyServer, "proxy", "http://172.17.3.156:8080", "Forwarding proxy server")
 	flag.BoolVar(&ProxyVerbose, "verbose", false, "Enable verbose logging")
 }
 
@@ -53,15 +53,10 @@ func Run() {
 		log.Debugf("proxyplease."+section, msgs...)
 	})
 
-	if ProxyServer == "" {
-		ProxyServer = getProxyServer()
-	}
-
 	bind, err := url.Parse(ProxyBind)
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Infof("Listening on: %s", bind.Host)
 
 	var proxyUrl *url.URL
 	if ProxyServer != "" {
@@ -69,15 +64,8 @@ func Run() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		if isLocalHost(proxyUrl.Hostname()) {
-			if bind.Port() == proxyUrl.Port() {
-				log.WithFields(log.Fields{
-					"Bind":  bind.Host,
-					"Proxy": proxyUrl.Host,
-				}).Fatal("Loop condition detected!")
-			}
-		}
-		log.Infof("Forwarding Proxy is: %s", proxyUrl.Redacted())
+
+		log.Infof("Forward proxy from: %s to %s", proxyUrl.Redacted(), bind.Host)
 	}
 
 	//
