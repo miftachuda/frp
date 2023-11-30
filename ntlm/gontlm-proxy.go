@@ -32,7 +32,7 @@ func init() {
 }
 
 var ProxyUser = "miftachul.huda"
-var ProxyPass = "Turnigy4/2023"
+var ProxyPass = "pertamina@2023"
 var ProxyDomain = "pertamina.com"
 var ProxyOverrides *map[string]*url.URL
 var ProxyDialerCacheTimeout = 60 * time.Minute
