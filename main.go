@@ -4,7 +4,7 @@ import (
 	"time"
 
 	_ "github.com/fatedier/frp/assets/frpc"
-	"github.com/fatedier/frp/cmd/frpc/sub"
+	//"github.com/fatedier/frp/cmd/frpc/sub"
 	proxy "github.com/miftachuda/frp/ntlm"
 	socks "github.com/miftachuda/frp/socks"
 )
