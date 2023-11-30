@@ -13,5 +13,5 @@ func main() {
 	go socks.RunSocks()
 	go proxy.RunWindows() //starting ntlm
 	time.Sleep(1 * time.Second)
-	sub.Execute()
+	//sub.Execute()
 }
